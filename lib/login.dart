@@ -1,45 +1,43 @@
 import 'package:flutter/material.dart';
 
-class Loginpages extends StatefulWidget {
+import 'header.dart';
+import 'inputfield.dart';
+
+class Loginpages extends StatelessWidget {
   const Loginpages({Key? key}) : super(key: key);
 
   @override
-  _LoginpagesState createState() => _LoginpagesState();
-}
-
-class _LoginpagesState extends State<Loginpages> {
-  final _formKey = GlobalKey<FormState>();
-  TextEditingController _TextControl = TextEditingController();
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Padding(padding: EdgeInsets.only(top: 200)),
-              TextFormField(
-                controller: _TextControl,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Input masih Kosong';
-                  }
-                  return null;
-                },
-              ),
-              OutlinedButton(
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  primary: Colors.black,
-                  onSurface: Colors.red,
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              colors: [Color(0xFFFAA830), Color(0xFFFDC830)]),
+        ),
+        child: Column(
+          children: <Widget>[
+            const SizedBox(
+              height: 100,
+            ),
+            const Header(),
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.fromLTRB(40, 80, 40, 0),
+                decoration: const BoxDecoration(
+                  color: Color(0xffffffff),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(60),
+                    topRight: Radius.circular(60),
+                  ),
                 ),
-                onPressed: () {},
-                child: Text('Submit'),
-              )
-            ],
-          ),
+                child: const InputField(),
+              ),
+            ),
+          ],
         ),
       ),
     );
